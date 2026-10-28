@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#2a1238">
+  <title>Lastro — Controle financeiro</title><link rel="icon" href="assets/icons/brand-receipt.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="creative.css"><script src="core.js" defer></script><script src="app.js" defer></script><script src="experience.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Pular para o conteúdo</a>
+<div class="site">
+  <aside class="sidebar">
+    <div class="logo"><span class="logomark"><img src="assets/icons/brand-receipt.svg" alt="" width="26" height="26" aria-hidden="true"></span><span>LASTRO<small>Base financeira pessoal</small></span></div>
+    <nav aria-label="Navegação"><a class="current" href="#resumo"><span>Resumo</span><b>01</b></a><a href="#movimentacoes"><span>Lançamentos</span><b>02</b></a><a href="#distribuicao"><span>Distribuição</span><b>03</b></a></nav>
+    <div class="side-bottom"><div class="seal">LOCAL</div><p>Clareza para decidir, registro para lembrar.</p><span>Os dados permanecem somente neste dispositivo.</span></div>
+  </aside>
+  <main class="content" id="main">
+    <header class="top"><span>Mapa financeiro pessoal</span><div class="period"><label for="month">Período</label><input id="month" type="month" aria-label="Escolher mês"><button id="all-months" type="button">Ver tudo</button></div></header>
+    <section id="resumo" class="headline"><div data-rb="slide-left" data-rb-trigger="mount"><p class="section-number">Leitura do seu dinheiro</p><h1 data-rb-split="mount">Cada movimento<br>deixa um rastro.</h1><p class="sub">Registre o que entra e sai. Dê lastro às próximas escolhas.</p></div><button id="add" class="button" type="button" data-rb="slide-right" data-rb-trigger="mount" data-rb-delay="0.18" data-rb-magnet>Novo lançamento <span>+</span></button></section>
+    <section class="summary" aria-label="Resumo do período" data-rb="wipe-right" data-rb-trigger="mount" data-rb-delay="0.26">
+      <div class="balance"><span>Saldo no período</span><strong id="balance">R$ 0,00</strong><small>Entradas menos saídas registradas</small></div>
+      <div class="split"><div><span>Entradas</span><strong id="income">R$ 0,00</strong></div><div><span>Saídas</span><strong id="expense">R$ 0,00</strong></div></div>
+      <div class="vault" aria-hidden="true"><canvas id="flow-canvas"></canvas><span class="canvas-label">fluxo líquido</span></div>
+    </section>
+    <div class="two-col">
+      <section id="movimentacoes" class="ledger" data-rb="slide-left"><div class="section-title"><div><span class="section-number">Histórico de movimentos</span><h2>Livro do período <small id="tx-count">00</small></h2></div><button id="export" type="button" class="link-btn" data-rb-magnet>Baixar CSV</button></div><div class="table-scroll" tabindex="0" aria-label="Movimentos do período; deslize horizontalmente para ver todas as colunas"><table><thead><tr><th>Descrição</th><th>Data</th><th>Valor</th><th><span class="sr-only">Ações</span></th></tr></thead><tbody id="rows"></tbody></table></div><div id="empty" class="empty" hidden><img class="empty-icon" src="assets/icons/empty-receipt.svg" alt="" width="54" height="54" aria-hidden="true"><strong>O livro está em branco.</strong><p>Registre uma entrada ou saída para começar.</p></div></section>
+      <section id="distribuicao" class="allocation" data-rb="slide-right"><span class="section-number">Leitura das saídas</span><h2>Para onde foi?</h2><p class="description">Distribuição por categoria no período selecionado.</p><div id="breakdown" class="breakdown"></div><p class="hint">A análise considera somente os lançamentos cadastrados.</p></section>
+    </div>
+    <footer><span>Lastro / controle local</span><span>Sem conexão bancária. Sem dados fictícios.</span><span class="author-credit">Criado por <strong>Jéssica Montes Santos</strong> · <a href="https://github.com/miwnyan" target="_blank" rel="me noreferrer">GitHub</a> · <a href="https://www.linkedin.com/in/jessicamontessantos/" target="_blank" rel="me noreferrer">LinkedIn</a></span><small class="asset-credits">Ativos: <a href="https://tabler.io/icons" target="_blank" rel="noreferrer">Tabler Icons</a> via <a href="https://iconify.design/" target="_blank" rel="noreferrer">Iconify</a>.</small></footer>
+  </main>
+</div>
+<dialog id="editor"><form id="tx-form" novalidate autocomplete="off"><div class="form-header"><div><span class="section-number">Movimentação</span><h2 id="form-title">Novo lançamento</h2></div><button id="close" type="button" class="x" aria-label="Fechar">×</button></div><fieldset class="kind-field"><legend>Tipo de lançamento</legend><label><input type="radio" name="kind" value="saida" checked> Saída</label><label><input type="radio" name="kind" value="entrada"> Entrada</label></fieldset><label>Descrição<input name="description" placeholder="Ex.: Mercado do mês…" maxlength="100" required></label><div class="form-grid"><label>Valor (R$)<input name="amount" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="0,00" required></label><label>Data<input name="date" type="date" required></label></div><label>Categoria<select name="category" id="category"></select></label><p id="form-error" role="alert" class="error" hidden></p><div class="form-actions"><button id="cancel" class="outlined" type="button">Cancelar</button><button class="button" type="submit">Salvar lançamento</button></div></form></dialog>
+<div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>

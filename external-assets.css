@@ -1,0 +1,10 @@
+.sidebar{background-image:radial-gradient(circle at 0 15%,#bdeccf18 0 1px,transparent 2px);background-size:17px 17px}
+.logomark img{display:block;width:28px;height:28px;filter:brightness(0) invert(93%) sepia(15%) saturate(736%) hue-rotate(86deg)}
+.summary{background-image:repeating-radial-gradient(ellipse at 45% 50%,transparent 0 18px,#2a12380b 19px 20px)}
+.vault{position:relative;background:var(--copper);overflow:visible;padding:8px}
+.vault img{display:block;width:170px;max-width:100%;mix-blend-mode:normal;filter:drop-shadow(0 16px 18px #2a12384a) saturate(1.25) contrast(1.08);animation:wallet-settle 1s cubic-bezier(.2,.8,.2,1) both}
+.empty .empty-icon{width:52px;height:52px;grid-row:1/3;filter:invert(48%) sepia(16%) saturate(812%) hue-rotate(244deg)}
+@keyframes wallet-settle{from{transform:translateY(20px) rotate(-8deg);opacity:0}to{transform:translateY(0) rotate(0);opacity:1}}
+@media(max-width:1050px){.vault{display:none}}
+@media(max-width:700px){.summary .vault{display:grid;min-height:170px;border-top:1px solid #bdaec2}.summary .vault img{width:150px}}
+@media(prefers-reduced-motion:reduce){.vault img{animation:none}}
